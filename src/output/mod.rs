@@ -115,12 +115,7 @@ fn render_json(report: &DiscoveryReport, results: &[CheckResult]) -> String {
             "}}"
         ),
         json_escape(&report.target),
-        report
-            .scanned_ports
-            .iter()
-            .map(u16::to_string)
-            .collect::<Vec<_>>()
-            .join(","),
+        join_ports(&report.scanned_ports),
         services,
         findings,
     )
